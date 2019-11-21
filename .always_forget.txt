@@ -1500,6 +1500,7 @@ git config user.email "email"           # email address for one project
 git config --global color.diff auto     # colors: git diff
 git config --global color.status auto   # colors: git status
 git config --global color.branch auto   # colors: git branch
+git config --global core.editor vim     # change editor to vim
 
 # One-time setup for a project
 git clone ssh://USERNAME@SERVER/~/opt/git/PROJECT.git # server
@@ -1532,7 +1533,8 @@ git fetch -vp                           # ^^^ + verbose
 git branch                              # check your branch
 git diff master origin/master           # see changes
 git merge origin/master                 # this will be a FF if no local changes
-git rebase origin/master                #
+git rebase origin/master                # place your changes on top of master
+git rebase -i origin/master             # interactive rebase on top of master
 
 # Commit
 git branch                              # check your branch
@@ -1567,6 +1569,8 @@ git commit                              # git should track ignore file itself
 git rev-parse HEAD                      # print hash of current commit
 git log                                 # commit history
 git log FILE                            # commit history for one file
+git log --all -- FILE                   # commit history in all branches for one file
+git log --follow --name-status --all -- FILE  # commit history in all branches for one file
 git log --oneline                       # less info
 git log --oneline --decorate --graph --all # more info
 git log --graph --abbrev-commit --decorate --date=relative
@@ -1603,6 +1607,7 @@ git checkout -b BRANCH                  # create a new branch and switch to it
 git push origin BRANCH                  # push BRANCH to remote
 git branch --set-upstream-to=origin/BRANCH BRANCH # fix tracking
 git rev-parse --abbrev-ref HEAD         # name of current branch (scriptable)
+git branch -a --contains 55d2069        # check which branch contains this commit
 
 # Branching Model  http://nvie.com/posts/a-successful-git-branching-model/
 git checkout -b feature/F develop       # start working on a new feature "F"
